@@ -42,19 +42,19 @@ def self.generate_time_slots(start_time, finish_time)
   start_time = Time.parse(start_time)
   finish_time = Time.parse(finish_time)
   
-  # puts " > start_time : #{start_time}, finish_time : #{finish_time}"
+  puts " > start_time : #{start_time}, finish_time : #{finish_time}"
   # puts "(finish_time.hour - start_time.hour)  : #{(finish_time.hour - start_time.hour) }"
   # puts "(60 / Constant::DURATION_MINUTES)  : #{(60 / Constant::DURATION_MINUTES)}"
 
   total = (finish_time.hour - start_time.hour) * (60 / Constant::DURATION_MINUTES)
-  # puts "	 > total : #{total} time slots"
+  puts "	 > total : #{total} time slots"
 
   1.upto(total) do
     time_slots << DateUtil.convert_to_string(start_time)
     start_time += (Constant::DURATION_MINUTES * 60)
   end
 
-  # puts "	 > We got time_slots : #{time_slots}"
+  puts "	 > We got time_slots : #{time_slots}"
   time_slots
 
 end

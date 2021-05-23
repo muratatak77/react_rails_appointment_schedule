@@ -23,3 +23,7 @@ Things you may want to cover:
 
 * ...
 # react_rails_receipts
+
+
+
+yarn add react-moment moment-timezone

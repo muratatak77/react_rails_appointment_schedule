@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class Recipes extends React.Component {
+class Coaches extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+     coaches: [], user: {}
     };
   }
 
   componentDidMount() {
-    const url = "/api/v1/recipes/index";
-    console.log("RUN 3 url : ", url 
+    const url = "/api/v1/coaches";
+    console.log("RUN  coachesurl : ", url )
 
     fetch(url)
       .then(response => {
@@ -20,59 +21,37 @@ class Recipes extends React.Component {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ recipes: response }))
+      .then(response => this.setState({ coaches: response.coaches, user: response.user }))
       .catch(() => this.props.history.push("/"));
   }
 
   render() {
-    const { recipes } = this.state;
-    const allRecipes = recipes.map((recipe, index) => (
-      <div key={index} className="col-md-6 col-lg-4">
-        <div className="card mb-4">
+    const { coaches,user } = this.state;
+    console.log("coaches: ", coaches )
+    console.log("user: ", user )
 
-          <img
-            src={recipe.image}
-            className="card-img-top"
-            alt={`${recipe.name} image`}
-          />
-          <div className="card-body">
-            <h5 className="card-title">{recipe.name}</h5>
-            <Link to={`/recipe/${recipe.id}`} className="btn custom-button">
-              View Recipe
-            </Link>
-          </div>
-        </div>
-      </div>
+    const allCoaches = coaches.map((coach, index) => (
+      <li  key={index}  className="list-group-item">
+          <h5 className="card-title">{coach.name}</h5>
+          <Link to={`/coach/${coach.id}/${user.id}`} className="btn custom-button">
+            View Availability Times
+          </Link>
+      </li>
     ));
-    const noRecipe = (
-      <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
-        <h4>
-          No recipes yet. Why not <Link to="/new_recipe">create one</Link>
-        </h4>
-      </div>
-    );
-
-    return (
+    console.log("allCoaches : ", allCoaches)
+ 
+     return (
       <>
-        <section className="jumbotron jumbotron-fluid text-center">
-          <div className="container py-5">
-            <h1 className="display-4">Recipes for every occasion</h1>
-            <p className="lead text-muted">
-              We’ve pulled together our most popular recipes, our latest
-              additions, and our editor’s picks, so there’s sure to be something
-              tempting for you to try.
-            </p>
-          </div>
+        <section className="text-center">
+            <h4 className="display-4">Coaches</h4>
         </section>
+
         <div className="py-5">
           <main className="container">
-            <div className="text-right mb-3">
-              <Link to="/recipe" className="btn custom-button">
-                Create New Recipe
-              </Link>
-            </div>
-            <div className="row">
-              {recipes.length > 0 ? allRecipes : noRecipe}
+            <div className="row p-3">
+              <ul className="list-group">
+               {allCoaches}
+              </ul>
             </div>
             <Link to="/" className="btn btn-link">
               Home
@@ -81,6 +60,8 @@ class Recipes extends React.Component {
         </div>
       </>
     );
+
+
   }
 }
-export default Recipes;
+export default Coaches;

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-console.log("RUN 2")
 
 export default () => (
 	<div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
@@ -9,7 +8,6 @@ export default () => (
         <h1 className="display-4">Coach Schedules</h1>
         <p className="lead">
          You can see coach detail click by View Coaches and then you can schedule an appointment.
-         Or You can see direct appointments.
         </p>
 
         <hr className="my-4" />
