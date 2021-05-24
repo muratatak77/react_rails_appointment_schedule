@@ -18,16 +18,6 @@ export default () => (
         >
         View Coaches
         </Link>
-        
-        <hr className="my-4" />
-        <Link
-          to="/appointments"
-          className="btn btn-lg custom-button"
-          role="button"
-        >
-        My Appointments
-        </Link>
-
       </div>
     </div>
   </div>

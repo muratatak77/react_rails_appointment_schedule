@@ -39,6 +39,7 @@ class Coach extends React.Component {
     this.createAppointment(event)
   }
 
+  // create an appointment.
   createAppointment(time_slot) {
 
     const url = "/api/v1/appointments/";
@@ -79,21 +80,6 @@ class Coach extends React.Component {
     return tz
   }
   
-  get_user_time_zone(){
-    const {user } = this.state;
-    let userTz = user.time_zone.replace(/\(GMT.*?\)\s/, '')
-    userTz = this.convert_tz(userTz)
-    return userTz
-  }
-
-
-  get_coach_time_zone(){
-    const {coach } = this.state;
-    let coachTz = coach.time_zone.replace(/\(GMT.*?\)\s/, '')
-    coachTz = this.convert_tz(coachTz)
-    return coachTz
-  }
-
   get_hour_minute_midday(str_date){
     let pm_index = str_date.indexOf("PM");
     let new_date = ""
@@ -121,12 +107,11 @@ class Coach extends React.Component {
   convertStringToDate(slot){
 
     if (slot.ts_start_time){
-
       const { coach, user, user_time_zone, coach_time_zone } = this.state;
       let hour_minute = this.get_hour_minute_midday(slot.ts_start_time)
       let midday = hour_minute[2]
 			
-			// "(GMT-06:00) Central Time (US & Canada)"
+			//like time zone :  "(GMT-06:00) Central Time (US & Canada)"
 			let firstP = coach.time_zone.indexOf("(")
 			let secondP = coach.time_zone.indexOf(")")
 			let gmt = coach.time_zone.substring(firstP+1,secondP).trim();
@@ -152,7 +137,6 @@ class Coach extends React.Component {
     }
 
     let timeSlotsAll = ""
-
     timeSlotsAll = days_of_week
       .map((day, index) => {
             return <div key={index} className="div-table-col p-1">

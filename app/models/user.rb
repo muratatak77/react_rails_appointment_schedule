@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-	has_many :appointments
-	validates :name, presence: true
+  has_many :appointments
+  validates :name, presence: true
 end
