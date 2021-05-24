@@ -37,7 +37,7 @@
 }
 .hero {
   width: 100vw;
-  height: 50vh;
+  height: 20vh;
 }
 .hero img {
   object-fit: cover;
@@ -55,7 +55,7 @@
 .div-table {
   display: table;         
   width: auto;         
-  background-color: #eee;         
+  background-color: #f5f3f357;         
   border: 1px solid #666666;         
   border-spacing: 5px; /* cellspacing:poor IE support for  this */
 }
@@ -63,12 +63,13 @@
   display: table-row;
   width: auto;
   clear: both;
+  font-size: medium;
 }
 .div-table-col {
   float: left; /* fix for  buggy browsers */
   display: table-column;         
   width: 150px;         
-  background-color: #eee;  
+  background-color: #f5f3f357;  
 }
 
 
